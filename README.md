@@ -17,7 +17,7 @@ _A web application that allows user to create Engineers and Machines and also gi
 
 ## Setup Instructions
 
-1. Clone this repository.
+1. Clone this repository. 
 2. Open your terminal (e.g., Terminal or GitBash) and navigate to this project's production directory called "DrSillystringzsFactory.Solution/Factory".
 3. Create a file in /Factory called appsettings.json.  In this file, place the following text:
 
