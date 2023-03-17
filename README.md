@@ -23,7 +23,7 @@ _A web application that allows user to create Engineers and Machines and also gi
 
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Port=3306;database=jannon_sielaff;uid=[your user ID];pwd=[Your password];"
+    "DefaultConnection": "Server=localhost;Port=3306;database=[Database Name];uid=[your user ID];pwd=[Your password];"
   }
 }
 
