@@ -1,3 +1,14 @@
 @{
   Layout = "_Layout";
 }
+
+@model Factory.Models.Machine
+
+<h2>Add a new Machine</h2>
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.MachineName)
+  @Html.TextBoxFor(model => model.MachineName)
+  <br>
+  <input type="submit" value="Add Machine">
+}
