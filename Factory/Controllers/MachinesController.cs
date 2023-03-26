@@ -30,4 +30,35 @@ public class MachinesController : Controller
     _db.SaveChanges();
     return RedirectToAction("Index");
   }
+
+    public ActionResult Details(int id)
+  {
+    Machine targetMachine = _db.Machines
+      .Include(machine => machine.Certifications)
+      .ThenInclude(machine => machine.Engineer)
+      .FirstOrDefault(machine => machine.MachineId == id);
+
+    return View(targetMachine);
+  }
+
+      public ActionResult AddCertifications(int id)
+    {
+      Machine thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+      ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "EngineerName");
+      return View(thisMachine);
+    }
+
+    [HttpPost]
+    public ActionResult AddCertifications(Machine machine, int engineerId)
+    {
+      #nullable enable
+      Certification? joinEntity = _db.Certifications.FirstOrDefault(join => (join.EngineerId == engineerId && join.MachineId == machine.MachineId));
+      #nullable disable
+      if (joinEntity == null && engineerId != 0)
+      {
+        _db.Certifications.Add(new Certification() { EngineerId = engineerId, MachineId = machine.MachineId });
+        _db.SaveChanges();
+      }
+      return RedirectToAction("Details", new { id = machine.MachineId });
+    }
 }

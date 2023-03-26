@@ -1,3 +1,22 @@
 @{
   Layout = "_Layout";
 }
+
+@using Factory.Models;
+
+
+<h2>@Model.MachineName</h2>
+<ul>
+  <li>Engineer Certifications:<ul>
+    @if (Model.Certifications.Count != 0)
+    {
+      @foreach (Certification item in Model.Certifications)
+      {
+        <li>@item.Engineer.EngineerName</li>
+      }
+    }
+  </ul></li>
+
+</ul> 
+
+@Html.ActionLink("Add Certifications for this Machine", "AddCertifications", "Machines", new { id = @Model.MachineId})
