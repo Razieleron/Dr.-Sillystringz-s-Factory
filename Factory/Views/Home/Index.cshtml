@@ -2,4 +2,29 @@
   Layout = "_Layout";
 }
 
-<h1> splishy splashy</h1>
+@using Factory.Models;
+Engineers:<br>
+  @if (ViewBag.engineers.Count == 0)
+  {
+    <p>Sorry there aren't any treats yet</p>
+  }
+  @foreach (Engineer engineer in ViewBag.engineers)
+  {
+        <a href="/engineer/details/@engineer.EngineerId">@engineer.EngineerName</a>
+    <br>
+  }
+</div>
+<br><br>
+Machines:<br>
+  @if (ViewBag.machines.Count == 0)
+  {
+    <p>Sorry there aren't any Machines yet</p>
+  }
+  @foreach (Machine machine in ViewBag.machines)
+  {
+        <a href="/machine/details/@machine.MachineId">@machine.MachineName</a>
+    <br>
+  }
+  <br><br>
+</div>
+</div>

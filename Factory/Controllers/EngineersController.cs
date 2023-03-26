@@ -54,9 +54,30 @@ public class EngineersController : Controller
       return RedirectToAction("Index");
     }
 
+    public ActionResult Delete(int id)
+    {
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(thisEngineer);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Engineer thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      _db.Engineers.Remove(thisEngineer);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
 
-
+    [HttpPost]
+    public ActionResult DeleteJoin(int joinId)
+    {
+      Certification joinEntry = _db.Certifications.FirstOrDefault(entry => entry.CertificationId == joinId);
+      _db.Certifications.Remove(joinEntry);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
       public ActionResult AddCertifications(int id)
     {
