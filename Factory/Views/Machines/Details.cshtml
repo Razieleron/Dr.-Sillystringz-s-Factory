@@ -13,10 +13,21 @@
       @foreach (Certification item in Model.Certifications)
       {
         <li>@item.Engineer.EngineerName</li>
+        @using (Html.BeginForm("DeleteJoin", "Machines"))
+        {
+          @Html.Hidden("joinId", item.CertificationId)
+          <input type="submit" value="delete"/>
+        }
       }
     }
   </ul></li>
 
 </ul> 
+<a href='@Url.Action("Delete", new { id = Model.MachineId })'>
+  <button type="button" class="button">Delete this Machine</button>
+</a>
+
+@Html.ActionLink("Edit this Machine", "Edit", "Machines", new {id = Model.MachineId})
+
 
 @Html.ActionLink("Add Certifications for this Machine", "AddCertifications", "Machines", new { id = @Model.MachineId})
