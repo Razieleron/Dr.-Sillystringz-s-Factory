@@ -29,4 +29,14 @@ public class EngineersController : Controller
     _db.SaveChanges();
     return RedirectToAction("Index");
   }
+
+  public ActionResult Details(int id)
+  {
+    Engineer targetEngineer = _db.Engineers
+      .Include(engineer => engineer.Certifications)
+      .ThenInclude(engineer => engineer.Machine)
+      .FirstOrDefault(engineer => engineer.EngineerId == id);
+
+    return View(targetEngineer);
+  }
 }
